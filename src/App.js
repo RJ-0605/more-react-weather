@@ -1,25 +1,47 @@
 import React from 'react';
-import logo from './logo.svg';
+import dogpic from './doggie.jpg';
+import FirstComponent from './FirstComponent';
+import SecondComponent from './SecondComponent';
+import ThirdComponent from './ThirdComponent';
+import FourthComponent from './FourthComponent';
+
+import TenthComponent from './TenthComponent';
 import './App.css';
+import './NewCssApp.css';
+import './Arrangeapp.css';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+
+      <FirstComponent />
+      <br/>
+      <img src={dogpic} className="displayed" />
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <SecondComponent  />
+
+      <ThirdComponent />
+        <div > </div>
+      <br/>
+      <br/>
+      <div className="clearboth"> </div>
+      <FourthComponent />
+      <br/>
+      
+      <br/>
+      <br/>
+      <TenthComponent />
+      <br/>
+      <br/>
+       
     </div>
+      
   );
 }
 

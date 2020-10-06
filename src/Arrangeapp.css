@@ -1,0 +1,35 @@
+
+
+
+
+.leftcolumn {   
+  float: left;
+  width: 50%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 25%;
+  padding-left: 10px;
+}
+
+.clearight{
+  
+  clear :right;
+
+}
+
+
+.clearboth{
+  
+  clear: both;
+  
+}
+
+.footer {
+  padding: 2px;
+  text-align: center;
+  background: #ddd;
+  margin-top: 20px;
+}
