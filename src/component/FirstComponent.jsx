@@ -1,13 +1,15 @@
  
  import React from 'react';
- import './NewCssApp.css';
+ import '../NewCssApp.css';
+ import '../weather.css';
 
 
 
  function FirstComponent() {
  	return (
  		<div>
-   			<p className="bigblue"> Hi there </p>
+   			<h1 className="bigblue"> Weather App </h1>
+   			
  		</div>
 
  	);
