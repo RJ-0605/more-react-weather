@@ -1,3 +1,6 @@
+// assignment to to be submitted to mest-weather-two
+
+
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -50,14 +53,26 @@ function App() {
     // Check If User If Logged In
     if (loggedin) {
       // Get Existing Data
+      // first set existingSearchesJSON as data gotten from local storage
+      // from previous searches 
       const existingSearchesJSON = localStorage.getItem('searchHistory');
+      //check if  existingSearchesJSON exists, 
+      // if not , that is if its local storage has not been created
+      // or this is the programs first time of runnning then make existingSearches= []
       const existingSearches = existingSearchesJSON ? JSON.parse(existingSearchesJSON) : [];
+      //here is when if get data from search i can reduce the number displayed 
+      // from existing searches to screen by running math to eject only a particular number
+      // and saved to the variable  
       console.log(existingSearches);
-      // Add New Data
+
+      // Add New Data from the search argument
       existingSearches.push(search);
       console.log(existingSearches);
-      // Push Data to localStorage
+
+      // Save Data to localStorage
+      //under key  'search history' and the string data as 'existing searches'
       localStorage.setItem('searchHistory', JSON.stringify(existingSearches));
+
       // Set Saved History To State
       setSearchHistory(existingSearches);
     }
@@ -68,7 +83,9 @@ function App() {
 
     axios.get('http://api.weatherstack.com/current?access_key=7e9be14a3120f70d8fd052c7141cdfbc&query=New York')
       .then(res => {
+        // anytime you get data the data is shown under console.log
         console.log(res.data);
+        // the save search history  also saves that data 
         saveSearchHistory(res.data);
 
         setApireached(true)
