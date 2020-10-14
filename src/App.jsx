@@ -1,3 +1,7 @@
+
+
+// second weather app assignment
+
 // assignment to to be submitted to mest-weather-two
 
 
@@ -22,7 +26,7 @@ import weatherjson from './weatherdata.json'
 
                                           
 
-function App() {
+export default function App() {
 
 
   // <input   placeholder="Search.."  style={{float: 'right', padding: '6px', border: 'none', marginTop: '15px', marginRight: '16px',fontSize: '17px',}} />
@@ -36,7 +40,23 @@ function App() {
   const [isPageLoading, setisPageLoading] = useState(true);
 
   const [count, setCount] = useState(0)
+
+// search form 
+
+const [searchForm, setSearchForm] = useState("")
+
+// set state for search 
+  const [search, setSearch] = useState("")
+
   const [searchHistory, setSearchHistory] = useState([])
+
+  // -----------------------------------------------------------
+  const [temperature,setTemperatur]=useState(null);
+  const [weatherIcon,setWeatherIcon]=useState(null)
+  const [location,setLocation]=useState(null)
+  const [date,setDate]=useState(null);
+
+  const [searchResults,setsearchResults]=useState([])
 
 
   const [firstarr, setFirstArr] = useState({
@@ -49,7 +69,76 @@ function App() {
   }
   )
 
-  const saveSearchHistory = (search) => {
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+  useEffect(() => {
+
+    setTimeout(function(){
+      apiWeather()
+     
+   },2000)
+   
+  }, []);
+
+  
+  function apiWeather(){
+
+    setisPageLoading(true)
+    const apiKey='ec7d0fcad25a0ade0cc1fb7d61dd869b';
+
+    navigator.geolocation.getCurrentPosition(position=> {
+
+      let queryWord= `${position['coords'].latitude},${position['coords'].longitude}`;
+      
+    
+   console.log("queryWord",queryWord)
+    
+    axios.get(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${queryWord}`, {
+        
+      })
+      .then(function (response) {
+        console.log("Weather Page",response.data);
+        setWeatherIcon(`${response.data['current'].weather_icons[0]}`)
+        setTemperatur(`${response.data['current'].temperature}°C`);
+        setLocation(`${response.data['location'].name} , ${response.data['location'].country}`);
+        setDate(`${response.data['location'].localtime}`)
+        setisPageLoading(false)
+       // localStorage.clear('userSearchResults');
+
+
+       
+        
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      
+ 
+  
+       
+  })
+     
+}
+
+  console.log('this text is reqpa');
+
+
+
+
+  const saveSearchHistory = (weatherdata) => {
     // Check If User If Logged In
     if (loggedin) {
       // Get Existing Data
@@ -66,7 +155,7 @@ function App() {
       console.log(existingSearches);
 
       // Add New Data from the search argument
-      existingSearches.push(search);
+      existingSearches.push(weatherdata);
       console.log(existingSearches);
 
       // Save Data to localStorage
@@ -75,38 +164,127 @@ function App() {
 
       // Set Saved History To State
       setSearchHistory(existingSearches);
+      
+      // what will be displayed on screen  only five 
+      // work on searchHistory value to dispay only five 
+
+      let OnlyFive= searchHistory.slice(Math.max(searchHistory.length - 5, 0))
+      // console.log("arr",OnlyFive)
+      
+      
+  
+  
+          let getData= OnlyFive.map((r,index)=>{
+            return <tr key={index}>
+                    <th scope="row">{index}</th>
+                    <td>{r.location}</td>
+                    <td>{r.date}</td>
+                    <td><img src={r.weatherIcon} alt="weaIcon"/></td>
+                    <td>{r.temperature}</td>
+                  </tr>
+          })
+
+     setSearchHistory(getData)
+     console.log(searchHistory)
+
+     // end of if loggedin below
     }
+    // end of save search history
   }
 
 
-  useEffect(() => {
+  // existing searches will be regulated 
 
-    axios.get('http://api.weatherstack.com/current?access_key=7e9be14a3120f70d8fd052c7141cdfbc&query=New York')
-      .then(res => {
-        // anytime you get data the data is shown under console.log
-        console.log(res.data);
-        // the save search history  also saves that data 
-        saveSearchHistory(res.data);
+  function searchUserResult( ){
 
-        setApireached(true)
-        setisPageLoading(false)
-      })
-      .catch(err => console.error(err));
-    console.log(firstarr.user.id);
+ 
+
+    if(loggedin===true){
+      let userSearchVar= JSON.parse(localStorage.getItem('userSearchResults'))
+  
+      let OnlyFive= userSearchVar.slice(Math.max(userSearchVar.length - 5, 0))
+      // console.log("arr",OnlyFive)
+    
+    
+      let getData= OnlyFive.map((r,index)=>{
+         return <tr key={index}>
+                <th scope="row">{index}</th>
+                <td>{r.location}</td>
+                <td>{r.date}</td>
+                <td><img src={r.weatherIcon} alt="weaIcon"/></td>
+                <td>{r.temperature}</td>
+              </tr>
+       })
+    
+       setsearchResults(getData)
+    }
+   
+  }
 
 
-  }, []);
 
-  console.log('this text is reqpa');
 
+
+
+
+
+// handle value from form
+  function handleSearch(event) {
+    setSearchForm(event.target.value)
+  }
+
+  function searchWeather(event){
+    event.preventDefault()
+  
+    apiWeatherSearch(searchForm)
+}
+
+// cathcing the datain format of query word before passing it to apiWeatherSearch
+function apiWeatherSearch(queryWord){
+    
+
+  setisPageLoading(true)
+  const apiKey='ec7d0fcad25a0ade0cc1fb7d61dd869b';
+  
+  axios.get(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${queryWord}`, {
+      
+    })
+    .then(function (response) {
+      console.log("Weather Page",response.data);
+      setWeatherIcon(`${response.data['current'].weather_icons[0]}`)
+      setTemperatur(`${response.data['current'].temperature}°C`);
+      setLocation(`${response.data['location'].name} , ${response.data['location'].country}`);
+      setDate(`${response.data['location'].localtime}`)
+      setisPageLoading(false)
+       
+     let   weatherdata = {
+      weatherIcon:`${response.data['current'].weather_icons[0]}`,
+      temperature:`${response.data['current'].temperature}°C`,
+      location:`${response.data['location'].name} , ${response.data['location'].country}`,
+      date:`${response.data['location'].localtime}`
+                 }
+
+
+
+
+        // i set an array of how i want to store data from response 
+       
+        saveSearchHistory(weatherdata)
+          
+
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
 
   return (
     <div >
       <div>
         <br />
-        <form className="col-md-12" >
+        <form className="col-md-12" onSubmit={searchWeather} >
           <div className="input-group">
-            <input type="text" className="form-control" id="search" style={{ height: 56 }} placeholder="Search for..." />
+            <input type="text" className="form-control" value={searchForm} onChange={handleSearch} style={{ height: 56 }} placeholder="Search for..." />
             <span className="input-group-btn">
               <button className="btn btn-default bg-light" type="submit" style={{ height: 56 }}>Go!</button>
             </span>
@@ -134,4 +312,3 @@ function App() {
   );
 }
 
-export default App;
