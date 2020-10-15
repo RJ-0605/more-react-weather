@@ -80,7 +80,7 @@ const [searchForm, setSearchForm] = useState("")
   
 
 
-
+// in the beginning 
 
 
 
@@ -88,6 +88,7 @@ const [searchForm, setSearchForm] = useState("")
 
     setTimeout(function(){
       apiWeather()
+      
      
    },2000)
    
@@ -97,6 +98,10 @@ const [searchForm, setSearchForm] = useState("")
   function apiWeather(){
 
     setisPageLoading(true)
+    { isPageLoading === true ? console.log("getting default weather for location")
+    :
+    console.log("default weather is gotten")}
+
     const apiKey='ec7d0fcad25a0ade0cc1fb7d61dd869b';
 
     navigator.geolocation.getCurrentPosition(position=> {
@@ -124,7 +129,12 @@ const [searchForm, setSearchForm] = useState("")
       })
       .catch(function (error) {
         console.log(error);
-      })
+      }
+      
+      
+      
+      
+      )
       
  
   
@@ -133,13 +143,15 @@ const [searchForm, setSearchForm] = useState("")
      
 }
 
-  console.log('this text is reqpa');
+  // console.log('this text is reqpa');
+
 
 
 
 
   const saveSearchHistory = (weatherdata) => {
-    // Check If User If Logged In
+
+    //  NB! Check If User If Logged In
     if (loggedin) {
       // Get Existing Data
       // first set existingSearchesJSON as data gotten from local storage
@@ -164,28 +176,16 @@ const [searchForm, setSearchForm] = useState("")
 
       // Set Saved History To State
       setSearchHistory(existingSearches);
-      
+      // console.log(searchHistory)
       // what will be displayed on screen  only five 
       // work on searchHistory value to dispay only five 
+    //  searchHistory is the search we looking for 
+    //  to be displayed on screen  in table form 
+    // //  as specified 
 
-      let OnlyFive= searchHistory.slice(Math.max(searchHistory.length - 5, 0))
-      // console.log("arr",OnlyFive)
-      
-      
-  
-  
-          let getData= OnlyFive.map((r,index)=>{
-            return <tr key={index}>
-                    <th scope="row">{index}</th>
-                    <td>{r.location}</td>
-                    <td>{r.date}</td>
-                    <td><img src={r.weatherIcon} alt="weaIcon"/></td>
-                    <td>{r.temperature}</td>
-                  </tr>
-          })
+    // console.log("The five limited searches")
 
-     setSearchHistory(getData)
-     console.log(searchHistory)
+    //  console.log(searchHistory)
 
      // end of if loggedin below
     }
@@ -193,33 +193,35 @@ const [searchForm, setSearchForm] = useState("")
   }
 
 
-  // existing searches will be regulated 
+  
 
-  function searchUserResult( ){
+  // // existing searches will be regulated 
+
+  // function searchUserResult( ){
 
  
 
-    if(loggedin===true){
-      let userSearchVar= JSON.parse(localStorage.getItem('userSearchResults'))
+  //   if(loggedin===true){
+  //     let userSearchVar= JSON.parse(localStorage.getItem('userSearchResults'))
   
-      let OnlyFive= userSearchVar.slice(Math.max(userSearchVar.length - 5, 0))
-      // console.log("arr",OnlyFive)
+  //     let OnlyFive= userSearchVar.slice(Math.max(userSearchVar.length - 5, 0))
+  //     // console.log("arr",OnlyFive)
     
     
-      let getData= OnlyFive.map((r,index)=>{
-         return <tr key={index}>
-                <th scope="row">{index}</th>
-                <td>{r.location}</td>
-                <td>{r.date}</td>
-                <td><img src={r.weatherIcon} alt="weaIcon"/></td>
-                <td>{r.temperature}</td>
-              </tr>
-       })
+  //     let getData= OnlyFive.map((r,index)=>{
+  //        return <tr key={index}>
+  //               <th scope="row">{index}</th>
+  //               <td>{r.location}</td>
+  //               <td>{r.date}</td>
+  //               <td><img src={r.weatherIcon} alt="weaIcon"/></td>
+  //               <td>{r.temperature}</td>
+  //             </tr>
+  //      })
     
-       setsearchResults(getData)
-    }
+  //      setsearchResults(getData)
+  //   }
    
-  }
+  // }
 
 
 
@@ -233,13 +235,18 @@ const [searchForm, setSearchForm] = useState("")
     setSearchForm(event.target.value)
   }
 
+
+    // when the search button is clicked 
+
   function searchWeather(event){
     event.preventDefault()
   
     apiWeatherSearch(searchForm)
 }
 
-// cathcing the datain format of query word before passing it to apiWeatherSearch
+
+
+// catching the datain format of query word before passing it to apiWeatherSearch
 function apiWeatherSearch(queryWord){
     
 
@@ -268,8 +275,14 @@ function apiWeatherSearch(queryWord){
 
 
         // i set an array of how i want to store data from response 
+
+        // i want to save before i display 
        
         saveSearchHistory(weatherdata)
+
+        // display of current results here 
+        // current results is weatherdata to be passed to props to display on screen 
+        console.log(weatherdata)
           
 
     })
@@ -277,6 +290,9 @@ function apiWeatherSearch(queryWord){
       console.log(error);
     })
   }
+
+
+
 
   return (
     <div >
@@ -294,7 +310,7 @@ function apiWeatherSearch(queryWord){
         <br />
         <br />
 
-        <LeftDisplayComponent />
+        <LeftDisplayComponent searchHistory={searchHistory} />
 
         { /*if else will be here  to load component  logged in after logged in  */}
 
