@@ -38,12 +38,14 @@ export default function App() {
   const [apireached, setApireached] = useState(false);
 
   const [isPageLoading, setisPageLoading] = useState(true);
+  
 
   const [count, setCount] = useState(0)
-
+  const [defaultweather, setDefaultWeather] = useState(false);
+  const [historyfocus, setHistoryFocus ] = useState(false)
 // search form 
 
-const [searchForm, setSearchForm] = useState("")
+ const [searchForm, setSearchForm] = useState("")
 
 // set state for search 
   const [search, setSearch] = useState("")
@@ -57,8 +59,6 @@ const [searchForm, setSearchForm] = useState("")
   const [date,setDate]=useState(null);
 
   const [searchResults,setsearchResults]=useState([])
-
-
   const [firstarr, setFirstArr] = useState({
 
     user: {
@@ -113,37 +113,42 @@ const [searchForm, setSearchForm] = useState("")
     
     axios.get(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${queryWord}`, {
         
-      })
-      .then(function (response) {
-        console.log("Weather Page",response.data);
-        setWeatherIcon(`${response.data['current'].weather_icons[0]}`)
-        setTemperatur(`${response.data['current'].temperature}°C`);
-        setLocation(`${response.data['location'].name} , ${response.data['location'].country}`);
-        setDate(`${response.data['location'].localtime}`)
-        setisPageLoading(false)
-       // localStorage.clear('userSearchResults');
+    }).then(function (response) {
+      console.log("Weather Page", response.data);
+      setWeatherIcon(`${response.data['current'].weather_icons[0]}`)
+      setTemperatur(`${response.data['current'].temperature}°C`);
+      setLocation(`${response.data['location'].name} , ${response.data['location'].country}`);
+      setDate(`${response.data['location'].localtime}`)
+      setisPageLoading(false)
 
+
+      let weatherdatalocate = {
+        weatherIcon: `${response.data['current'].weather_icons[0]}`,
+        temperature: `${response.data['current'].temperature}°C`,
+        location: `${response.data['location'].name} , ${response.data['location'].country}`,
+        date: `${response.data['location'].localtime}`
+      }
+      
+      // weather from default location 
+      setDefaultWeather(weatherdatalocate)
 
        
         
       })
       .catch(function (error) {
         console.log(error);
-      }
-      
-      
-      
-      
+      }  
       )
-      
- 
-  
+
        
   })
      
-}
+ }
+
 
   // console.log('this text is reqpa');
+
+
 
 
 
@@ -212,7 +217,7 @@ const [searchForm, setSearchForm] = useState("")
   //        return <tr key={index}>
   //               <th scope="row">{index}</th>
   //               <td>{r.location}</td>
-  //               <td>{r.date}</td>
+  //               <td>{r.date}< /td>
   //               <td><img src={r.weatherIcon} alt="weaIcon"/></td>
   //               <td>{r.temperature}</td>
   //             </tr>
@@ -258,12 +263,16 @@ function apiWeatherSearch(queryWord){
     })
     .then(function (response) {
       console.log("Weather Page",response.data);
+
+      // setting the values to the state before usage 
+
       setWeatherIcon(`${response.data['current'].weather_icons[0]}`)
       setTemperatur(`${response.data['current'].temperature}°C`);
       setLocation(`${response.data['location'].name} , ${response.data['location'].country}`);
       setDate(`${response.data['location'].localtime}`)
       setisPageLoading(false)
        
+
      let   weatherdata = {
       weatherIcon:`${response.data['current'].weather_icons[0]}`,
       temperature:`${response.data['current'].temperature}°C`,
@@ -289,42 +298,45 @@ function apiWeatherSearch(queryWord){
     .catch(function (error) {
       console.log(error);
     })
+
   }
 
 
 
 
-  return (
-    <div >
-      <div>
-        <br />
-        <form className="col-md-12" onSubmit={searchWeather} >
-          <div className="input-group">
-            <input type="text" className="form-control" value={searchForm} onChange={handleSearch} style={{ height: 56 }} placeholder="Search for..." />
-            <span className="input-group-btn">
-              <button className="btn btn-default bg-light" type="submit" style={{ height: 56 }}>Go!</button>
-            </span>
-          </div>
-        </form>
-        <br />
-        <br />
-        <br />
+    return (
+      <div >
+        <div>
+          <br />
+          <form className="col-md-12" onSubmit={searchWeather} >
+            <div className="input-group">
+              <input type="text" className="form-control" value={searchForm} onChange={handleSearch} style={{ height: 56 }} placeholder="Search for..." />
+              <span className="input-group-btn">
+                <button className="btn btn-default bg-light" type="submit" style={{ height: 56 }}>Go!</button>
+              </span>
+            </div>
+          </form>
+          <br />
+          <br />
+          <br />
 
-        <LeftDisplayComponent searchHistory={searchHistory} />
+          <LeftDisplayComponent searchHistory={searchHistory} defaultweather={defaultweather} setHistoryFocus={setHistoryFocus} historyfocus={historyfocus}/>
 
-        { /*if else will be here  to load component  logged in after logged in  */}
+          { /*if else will be here  to load component  logged in after logged in  */}
 
-        <LoginComponent email={email} setEmail={setEmail} username={username} setUsername={setUsername} password={password} setPassword={setPassword} loggedin={loggedin} setLoggedIn={setLoggedIn} />
+          <LoginComponent email={email} setEmail={setEmail} username={username} setUsername={setUsername} password={password} setPassword={setPassword} loggedin={loggedin} setLoggedIn={setLoggedIn} />
 
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+        </div>
       </div>
-    </div>
 
-  );
-}
+    );
+
+ }
+
 

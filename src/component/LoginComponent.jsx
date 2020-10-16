@@ -72,8 +72,8 @@ const [confirm_password, setConfirm_Password]=useState("");
         userSearch:[]
       };
       localStorage.setItem(props.email, JSON.stringify(userData));
-      // Set Logged In To true
-      props.setLoggedIn(true);
+      // Set Logged In To false since this is signup
+      props.setLoggedIn(false);
      }
 
 
