@@ -43,6 +43,7 @@ export default function App() {
   const [count, setCount] = useState(0)
   const [defaultweather, setDefaultWeather] = useState(false);
   const [historyfocus, setHistoryFocus ] = useState(false)
+  const [historyfocusdet, setHistoryFocusDet] = useState(false)
 // search form 
 
  const [searchForm, setSearchForm] = useState("")
@@ -183,16 +184,7 @@ export default function App() {
       setSearchHistory(existingSearches);
       // console.log(searchHistory)
       // what will be displayed on screen  only five 
-      // work on searchHistory value to dispay only five 
-    //  searchHistory is the search we looking for 
-    //  to be displayed on screen  in table form 
-    // //  as specified 
 
-    // console.log("The five limited searches")
-
-    //  console.log(searchHistory)
-
-     // end of if loggedin below
     }
     // end of save search history
   }
@@ -200,39 +192,7 @@ export default function App() {
 
   
 
-  // // existing searches will be regulated 
-
-  // function searchUserResult( ){
-
  
-
-  //   if(loggedin===true){
-  //     let userSearchVar= JSON.parse(localStorage.getItem('userSearchResults'))
-  
-  //     let OnlyFive= userSearchVar.slice(Math.max(userSearchVar.length - 5, 0))
-  //     // console.log("arr",OnlyFive)
-    
-    
-  //     let getData= OnlyFive.map((r,index)=>{
-  //        return <tr key={index}>
-  //               <th scope="row">{index}</th>
-  //               <td>{r.location}</td>
-  //               <td>{r.date}< /td>
-  //               <td><img src={r.weatherIcon} alt="weaIcon"/></td>
-  //               <td>{r.temperature}</td>
-  //             </tr>
-  //      })
-    
-  //      setsearchResults(getData)
-  //   }
-   
-  // }
-
-
-
-
-
-
 
 
 // handle value from form
@@ -320,11 +280,18 @@ function apiWeatherSearch(queryWord){
           <br />
           <br />
 
-          <LeftDisplayComponent searchHistory={searchHistory} defaultweather={defaultweather} setHistoryFocus={setHistoryFocus} historyfocus={historyfocus}/>
+          <LeftDisplayComponent searchHistory={searchHistory} 
+          defaultweather={defaultweather} setHistoryFocus={setHistoryFocus}
+          historyfocus={historyfocus} historyfocusdet= {historyfocusdet} 
+          setHistoryFocusDet={setHistoryFocusDet}  />
 
           { /*if else will be here  to load component  logged in after logged in  */}
 
-          <LoginComponent email={email} setEmail={setEmail} username={username} setUsername={setUsername} password={password} setPassword={setPassword} loggedin={loggedin} setLoggedIn={setLoggedIn} />
+          <LoginComponent email={email} setEmail={setEmail} username={username} 
+          setUsername={setUsername} password={password} setPassword={setPassword}
+          loggedin={loggedin} setLoggedIn={setLoggedIn}
+          setHistoryFocus={setHistoryFocus} historyfocus={historyfocus}
+          historyfocusdet={historyfocusdet} setHistoryFocusDet={setHistoryFocusDet} />
 
           <br />
           <br />

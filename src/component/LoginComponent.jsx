@@ -84,11 +84,17 @@ const [confirm_password, setConfirm_Password]=useState("");
             
                  
    			
-           {props.loggedin=== true ? <p>" Hello Welcome {props.email}"</p> :
+        {props.loggedin === true ? props.historyfocus ?
 
+          <div className="rightcolumn ">
+          {props.historyfocusdet}
 
+          </div>
+          : <p style={{ color: "white" }}>" Hello Welcome {props.email}"</p>
 
-              <div className="rightcolumn bg-transparent ">
+           :
+
+        <div className="rightcolumn bg-transparent ">
 
               <form onSubmit={login}>
               <p> please login below </p>

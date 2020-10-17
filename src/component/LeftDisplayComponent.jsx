@@ -31,8 +31,8 @@ import LocateComponent from './LocateComponent';
             // i add the css  styles to the div here on render 
             return   <div key={index} >
 
-                        <p> this is weather location ,{weather.location}</p>
-                        <p>{weather.temperature} </p>
+                        <p style={{ color:"white"}}> this is weather location ,{weather.location}</p>
+                        <p style={{ color: "white" }}>{weather.temperature} </p>
 
                         <img src={weather.weatherIcon} style={{ display: 'block', margin: 'auto' }} />
 
@@ -56,9 +56,13 @@ import LocateComponent from './LocateComponent';
 
                // i add the css  styles to the div here on render 
                return <div key={index} >
-
-                  <p> this is weather location ,{weather.location}</p>
-                  <p>{weather.temperature} </p>
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <p style={{ color:"white"}} > This is the current weather for your location </p>
+                  <p style={{ color:"white"}} > this is weather location ,{weather.location}</p>
+                  <p style={{ color:"white"}}>{weather.temperature} </p>
 
                   <img src={weather.weatherIcon} style={{ display: 'block', margin: 'auto' }} />
 
@@ -70,7 +74,9 @@ import LocateComponent from './LocateComponent';
 
                  function Switchcurrentdiv(){
                     if (!props.historyfocus){
-                       props.setHistoryFocus(true)}
+                       props.setHistoryFocus(true)
+                       props.setHistoryFocusDet(CurrentSearch())
+                     }
                        else{
                        props.setHistoryFocus(false)}    
                       }
