@@ -10,10 +10,10 @@
  		<div>
    			<h1 className="bigblue"> Weather App </h1>
 			   <br/>
-			  {props.loggedin === true ?
+			  {/* {props.loggedin === true ?
 			   <p>" Hello Welcome {props.email}"</p>
-			   
-			  :null}
+
+			  :null} */}
 
  		</div>
 
