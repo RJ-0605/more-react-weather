@@ -1,0 +1,43 @@
+
+
+
+
+.leftcolumn {   
+  float: left;
+  width: 50%;
+  height:auto;
+}
+
+/* Right column */
+.rightcolumn {
+
+  
+  float: left;
+  width: 40%;
+  height:auto;
+  /* margin-top:18vh; */
+  margin-top:0.5vh;
+  padding-left: 50px;
+  position:relative;
+  z-index:-2;
+}
+
+.clearight{
+  
+  clear :right;
+
+}
+
+
+.clearboth{
+  
+  clear: both;
+  
+}
+
+.footer {
+  padding: 2px;
+  text-align: center;
+  background: #ddd;
+  margin-top: 20px;
+}

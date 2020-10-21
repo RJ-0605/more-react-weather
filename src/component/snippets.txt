@@ -1,0 +1,29 @@
+<div className=" container d-flex justify-content-center h-100">
+          <div className="card">
+            <div className="card-header">
+              <h3>Sign In</h3>
+            </div>
+            <div >
+                  <form style={{padding: 21}}>
+
+                      <div >
+                      <label>Username</label>
+                        <input type="text" value={props.username} onChange="{handleUsername}" className="form-control" />  
+                      </div>
+
+                      <div >
+                        <label >Password</label>
+                        <input type="password" value={props.password} onChange="{handlePassword}" className="form-control" />
+                      </div>
+
+                       <br/>
+
+                      
+
+                      <div className="form-group">
+                        <button  onClick={login}  >Login</button>
+                        </div>
+                      
+
+                  </form>
+            </div>
