@@ -11,8 +11,9 @@ export default function Logindisp(props) {
 
     <div >
 
+      {/* justify-content-center */}
 
-      <div className=" container d-flex justify-content-center h-100 m-5">
+      <div className=" container d-flex  h-100 mt-5">
         <div className="card">
           <div className="card-header">
             <h3>Log In</h3>

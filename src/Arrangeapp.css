@@ -2,24 +2,51 @@
 
 
 
-.leftcolumn {   
-  float: left;
-  width: 50%;
-  height:auto;
+.leftcolumn {  
+  margin: 0 0 0 8rem;
+}
+
+.leftcolumn button {
+  padding: .3rem .7rem;
+  background-color: white;
+  color: rgb(36, 36, 36);
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  margin-bottom: 2rem;
+}
+
+.leftcolumn button:hover {
+  background-color: rgb(221, 94, 94);
+  color: white;
+}
+
+
+.leftcolumn p {
+  text-transform: capitalize;
+  font-size: 18px;
+}
+
+.leftcolumn img {
+  padding-bottom: 2rem;
 }
 
 /* Right column */
 .rightcolumn {
+margin: 0;
+}
 
-  
-  float: left;
-  width: 40%;
-  height:auto;
-  /* margin-top:18vh; */
-  margin-top:0.5vh;
-  padding-left: 50px;
-  position:relative;
-  z-index:-2;
+
+.rightcolumn .button-tog {
+  margin-left: 4rem;
+}
+
+ .rounded {
+border-radius: 0.8rem;
+padding: .5rem .4rem;
+background-color: white;
+border: none;
+margin: 3rem 0 0 0;
 }
 
 .clearight{

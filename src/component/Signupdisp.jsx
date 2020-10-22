@@ -11,13 +11,13 @@ export default function Signupdisp(props) {
 
     return (
 
-        <div className=" container d-flex justify-content-center h-100 m-5 ">
+        <div className=" container d-flex h-100 m-5 ">
             <div className="card">
                 <div className="card-header">
                     <h3>Sign Up</h3>
                 </div>
                 <div >
-                    <form onSubmit={props.login} style={{ padding: 21 }}>
+                    <form onSubmit={props.signup} style={{ padding: 21 }}>
 
                         <div >
                             <label>Email</label>
@@ -31,7 +31,7 @@ export default function Signupdisp(props) {
 
                         <div >
                             <label >Confirm Password</label>
-                            <input type="password" value={props.password} onChange={props.handleSignupPassword} className="form-control" />
+                            <input type="password" value={props.password} onChange={props.handleSignupConfirmPassword} className="form-control" />
                         </div>
 
                         <br />

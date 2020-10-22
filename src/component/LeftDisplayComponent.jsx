@@ -3,6 +3,7 @@
 import React from 'react';
 import '../NewCssApp.css';
 import '../Arrangeapp.css';
+import './LeftDisplayComponent.css';
 
 import TempComponent from './TempComponent';
 import LocateComponent from './LocateComponent';
@@ -28,10 +29,10 @@ function LeftDisplayComponent(props) {
       return OnlyFive.map((weather, index) => {
 
          // i add the css  styles to the div here on render 
-         return <div key={index} >
+         return <div key={index} className="weather-info">
 
             <p style={{ color: "white" }}> this is weather location ,{weather.location}</p>
-            <p style={{ color: "white" }}>{weather.temperature} </p>
+            <p style={{ color: "white", fontSize: "30px" }}>{weather.temperature} </p>
 
             <img src={weather.weatherIcon} style={{ display: 'block', margin: 'auto' }} />
 
@@ -54,14 +55,11 @@ function LeftDisplayComponent(props) {
       return currentPage.map((weather, index) => {
 
          // i add the css  styles to the div here on render 
-         return <div className="" key={index} >
-            <br />
-            <br />
-            <br />
-            <br />
+         return <div className="current-location" key={index}>
+
             <p style={{ color: "white" }} > This is the current weather for your location </p>
             <p style={{ color: "white" }} > this is weather location ,{weather.location}</p>
-            <p style={{ color: "white" }}>{weather.temperature} </p>
+            <p style={{ color: "white", fontSize: "30px" }}>{weather.temperature} </p>
 
             <img src={weather.weatherIcon} style={{ display: 'block', margin: 'auto' }} />
 

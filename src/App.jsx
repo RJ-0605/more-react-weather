@@ -283,20 +283,29 @@ export default function App() {
           </div>
         </form>
 
+        {
+          loggedIn ?
 
-        <LeftDisplayComponent searchHistory={searchHistory}
-          defaultweather={defaultweather} setHistoryFocus={setHistoryFocus}
-          historyfocus={historyfocus} historyfocusdet={historyfocusdet}
-          setHistoryFocusDet={setHistoryFocusDet} />
+            <div className="paragraph"><p style={{ color: "white", margin: "3rem auto 0 auto", fontSize: "40px" }}> Hello Welcome </p></div>
+            :
+            console.log("not logged in")
+        }
+        <div className="Box" >
 
-        { /*if else will be here  to load component  logged in after logged in  */}
+          <LeftDisplayComponent searchHistory={searchHistory}
+            defaultweather={defaultweather} setHistoryFocus={setHistoryFocus}
+            historyfocus={historyfocus} historyfocusdet={historyfocusdet}
+            setHistoryFocusDet={setHistoryFocusDet} />
 
-        <LoginComponent
-          loggedIn={loggedIn}
-          setLoggedIn={setLoggedIn}
-          historyfocus={historyfocus}
-          historyfocusdet={historyfocusdet} />
+          { /*if else will be here  to load component  logged in after logged in  */}
 
+          <LoginComponent
+            loggedIn={loggedIn}
+            setLoggedIn={setLoggedIn}
+            historyfocus={historyfocus}
+            historyfocusdet={historyfocusdet} />
+
+        </div>
 
       </div>
     </div>

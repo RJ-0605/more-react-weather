@@ -37,3 +37,15 @@
     transform: rotate(360deg);
   }
 }
+
+.Box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.paragraph {
+  width: 100%;
+  text-align: center;
+}

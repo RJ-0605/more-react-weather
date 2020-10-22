@@ -142,15 +142,22 @@ export default function LoginComponent(props) {
           {props.historyfocusdet}
 
         </div>
-        : <p style={{ color: "white" }}>" Hello Welcome {props.email}"</p>
+        :
+
+        console.log("logged in")
+        // <p style={{ color: "white", margin: "3rem 6rem 0 0", fontSize: "30px" }}> Hello Welcome {props.email}</p>
 
 
 
         :
 
+
+
         <div className="rightcolumn bg-transparent ">
 
-
+          <div className="button-tog">
+            <button className="rounded" onClick={() => Switchlogin()}>Toggle for  Login/Signup</button>
+          </div>
 
           {/* button will load login or signup component  */}
 
@@ -161,6 +168,8 @@ export default function LoginComponent(props) {
           {/* signup component  */}
 
           {/* <Signupdisp  /> */}
+
+
 
 
 
@@ -183,7 +192,6 @@ export default function LoginComponent(props) {
           }
 
           <br />
-          <button className="rounded" onClick={() => Switchlogin()}>Toggle for  Login/Signup</button>
 
         </div>
 
