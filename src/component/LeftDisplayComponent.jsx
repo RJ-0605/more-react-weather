@@ -55,7 +55,7 @@ function LeftDisplayComponent(props) {
       return currentPage.map((weather, index) => {
 
          // i add the css  styles to the div here on render 
-         return <div key={index} >
+         return <div className="card" key={index} >
             <br />
             <br />
             <br />

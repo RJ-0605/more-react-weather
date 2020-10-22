@@ -43,13 +43,17 @@ export default function LoginComponent(props) {
 
     // Check is Entered Password Entered matches data in localstorage
 
-    const userData = JSON.parse(user);
-    if (userData.password !== loginPassword) {
-      return alert('Invalid Password');
+    else {
+      const userData = JSON.parse(user);
+      if (userData) {
+        if (userData.password !== loginPassword) {
+          alert('Invalid Password');
+          props.setLoggedIn(false);
+        }
+        // Set Logged In To T
+      }
+      props.setLoggedIn(true);
     }
-    // Set Logged In To T
-
-    props.setLoggedIn(true);
 
   }
 
@@ -177,7 +181,9 @@ export default function LoginComponent(props) {
               loginEmail={loginEmail}
               loginPassword={loginPassword} />
           }
-          <button onClick={() => Switchlogin()}>trial</button>
+
+          <br />
+          <button className="rounded" onClick={() => Switchlogin()}>Toggle for  Login/Signup</button>
 
         </div>
 

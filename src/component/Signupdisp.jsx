@@ -11,21 +11,47 @@ export default function Signupdisp(props) {
 
     return (
 
-        <form>
-            <p> please signup below </p>
-            <label>Email </label>
-            <input type="email" value={props.email} onChange={props.handleSignupEmail} />
-            <br />
-            <br />
-            <label>Password </label>
-            <input type="password" value={props.password} onChange={props.handleSignupPassword} />
-            <br />
-            <br />
-            <label>confirm Password </label>
-            <input type="password" value={props.confirmPassword} onChange={props.handleSignupConfirmPassword} />
+        <div className=" container d-flex justify-content-center h-100 m-5 ">
+            <div className="card">
+                <div className="card-header">
+                    <h3>Sign Up</h3>
+                </div>
+                <div >
+                    <form onSubmit={props.login} style={{ padding: 21 }}>
 
-            <button type="submit" onClick={props.signup}>Signup</button>
-        </form>
+                        <div >
+                            <label>Email</label>
+                            <input type="text" value={props.email} onChange="{handleUsername}" className="form-control" />
+                        </div>
+
+                        <div >
+                            <label >Password</label>
+                            <input type="password" value={props.password} onChange="{handlePassword}" className="form-control" />
+                        </div>
+
+                        <div >
+                            <label >Confirm Password</label>
+                            <input type="password" value={props.password} onChange="{handlePassword}" className="form-control" />
+                        </div>
+
+                        <br />
+
+
+
+                        <div className="form-group">
+                            <button onClick={props.login}  >Login</button>
+                        </div>
+
+
+                    </form>
+
+                </div>
+
+
+
+
+            </div>
+        </div>
 
 
     )
