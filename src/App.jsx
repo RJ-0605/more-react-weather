@@ -9,6 +9,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+
+import FirstComponent from './component/FirstComponent';
+
 import LoginComponent from './component/LoginComponent';
 
 import LeftDisplayComponent from './component/LeftDisplayComponent';
@@ -269,6 +272,7 @@ export default function App() {
   return (
     <div >
       <div>
+        <FirstComponent />
         <br />
         <form className="col-md-12" onSubmit={searchWeather} >
           <div className="input-group">

@@ -21,17 +21,17 @@ export default function Signupdisp(props) {
 
                         <div >
                             <label>Email</label>
-                            <input type="text" value={props.email} onChange="{handleUsername}" className="form-control" />
+                            <input type="text" value={props.email} onChange={props.handleSignupEmail} className="form-control" />
                         </div>
 
                         <div >
                             <label >Password</label>
-                            <input type="password" value={props.password} onChange="{handlePassword}" className="form-control" />
+                            <input type="password" value={props.password} onChange={props.handleSignupPassword} className="form-control" />
                         </div>
 
                         <div >
                             <label >Confirm Password</label>
-                            <input type="password" value={props.password} onChange="{handlePassword}" className="form-control" />
+                            <input type="password" value={props.password} onChange={props.handleSignupPassword} className="form-control" />
                         </div>
 
                         <br />

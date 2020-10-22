@@ -22,12 +22,12 @@ export default function Logindisp(props) {
 
               <div >
                 <label>Email</label>
-                <input type="text" value={props.email} onChange="{handleUsername}" className="form-control" />
+                <input type="text" value={props.email} onChange={props.handleLoginEmail} className="form-control" />
               </div>
 
               <div >
                 <label >Password</label>
-                <input type="password" value={props.password} onChange="{handlePassword}" className="form-control" />
+                <input type="password" value={props.password} onChange={props.handleLoginPassword} className="form-control" />
               </div>
 
               <br />

@@ -3,7 +3,6 @@
 import React from 'react';
 import '../NewCssApp.css';
 import '../Arrangeapp.css';
-import FirstComponent from './FirstComponent';
 
 import TempComponent from './TempComponent';
 import LocateComponent from './LocateComponent';
@@ -55,7 +54,7 @@ function LeftDisplayComponent(props) {
       return currentPage.map((weather, index) => {
 
          // i add the css  styles to the div here on render 
-         return <div className="card" key={index} >
+         return <div className="" key={index} >
             <br />
             <br />
             <br />
@@ -97,7 +96,7 @@ function LeftDisplayComponent(props) {
       <div className="leftcolumn">
 
          <br />
-         <FirstComponent />
+
          <br />
 
 
