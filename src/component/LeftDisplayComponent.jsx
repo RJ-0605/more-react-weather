@@ -47,6 +47,32 @@ function LeftDisplayComponent(props) {
       // passed to a prop to be displayed in another component
    }
 
+   const NewSearchReturn = () => {
+
+      let OnlyOne = props.searchHistory.slice(Math.max(props.searchHistory.length - 1, 0))
+      console.log("only five arr", OnlyOne)
+
+      return OnlyOne.map((weather, index) => {
+
+         // i add the css  styles to the div here on render 
+         return <div key={index} className="weather-info">
+
+            <p style={{ color: "white" }}> this is weather location ,{weather.location}</p>
+            <p style={{ color: "white", fontSize: "30px" }}>{weather.temperature} </p>
+
+            <img src={weather.weatherIcon} style={{ display: 'block', margin: 'auto' }} />
+
+         </div>
+
+
+
+
+      })
+
+      // this will handle current location which can be 
+      // passed to a prop to be displayed in another component
+   }
+
 
    const CurrentSearch = () => {
       let currentPage = [props.defaultweather]
@@ -80,6 +106,14 @@ function LeftDisplayComponent(props) {
    }
 
 
+   function logout() {
+
+      if (props.loggedIn = true) {
+         props.setLoggedIn = false;
+         // localStorage.clear();
+
+      }
+   }
 
 
 
@@ -102,11 +136,18 @@ function LeftDisplayComponent(props) {
      navigation bar and either toggle to change state with conditional
       to not render when the condition is true */}
 
-         <button onClick={Switchcurrentdiv}> Search history</button>
+         {props.loggedIn === true ? <button onClick={Switchcurrentdiv}> Search history</button>
 
+            : null}
 
-         { props.historyfocus ? SearchReturn() :
+         {props.loggedIn === true ? <button onClick={logout}> Logout</button>
 
+            : null}
+
+         { props.loggedIn ? props.historyfocus ?
+
+            SearchReturn() :
+            NewSearchReturn() :
             CurrentSearch()
 
          }

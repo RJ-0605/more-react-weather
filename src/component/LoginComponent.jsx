@@ -51,8 +51,8 @@ export default function LoginComponent(props) {
           props.setLoggedIn(false);
         }
         // Set Logged In To T
+        props.setLoggedIn(true);
       }
-      props.setLoggedIn(true);
     }
 
   }
@@ -118,6 +118,7 @@ export default function LoginComponent(props) {
     };
     localStorage.setItem(signupEmail, JSON.stringify(userData));
     // Set Logged In To false since this is signup
+    alert('Proceed to login')
     props.setLoggedIn(false);
   }
 
