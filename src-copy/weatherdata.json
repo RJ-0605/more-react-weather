@@ -1,0 +1,14 @@
+[
+
+    { 
+      
+      "weatherarr":{
+
+          "user":{
+            "id":12,
+            "firstName":"John",
+            "lastName":"Doe"
+            }
+         }
+    }
+]

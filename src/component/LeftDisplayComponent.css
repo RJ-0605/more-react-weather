@@ -1,0 +1,12 @@
+.weather-info {
+    width: 100%;
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.current-location {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 3rem;
+    margin-right: 4rem;
+}

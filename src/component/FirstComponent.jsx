@@ -1,24 +1,24 @@
- 
- import React from 'react';
- import '../NewCssApp.css';
- import '../weather.css';
+
+import React from 'react';
+import '../NewCssApp.css';
+import '../weather.css';
 
 
 
- function FirstComponent(props) {
- 	return (
- 		<div>
-   			<h1 className="bigblue"> Weather App </h1>
-			   <br/>
-			  {/* {props.loggedin === true ?
+function FirstComponent(props) {
+	return (
+		<div>
+			<h1 className="bigblue"> Weather App </h1>
+			<br />
+			{/* {props.loggedin === true ?
 			   <p>" Hello Welcome {props.email}"</p>
 
 			  :null} */}
 
- 		</div>
+		</div>
 
- 	);
+	);
 
- }
+}
 
- export default FirstComponent;
+export default FirstComponent;

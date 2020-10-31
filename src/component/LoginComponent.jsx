@@ -1,148 +1,211 @@
- 
- import React , { useState, useEffects }from 'react';
- import '../NewCssApp.css';
- import '../Arrangeapp.css';
- 
+
+import React, { useState, useEffects } from 'react';
+import '../NewCssApp.css';
+import '../Arrangeapp.css';
+import Logindisp from './Logindisp'
+import Signupdisp from './Signupdisp'
 
 
-  export default function LoginComponent(props) {
 
 
+export default function LoginComponent(props) {
 
- 	function handleEmail(event){
-     props.setEmail(event.target.value)
-  }
-  function handleUsername(event){
-     props.setUsername(event.target.value)
-  }
-  function handlePassword(event){
-     props.setPassword(event.target.value)
+
+  const [username, setUsername] = useState("")
+
+  function handleUsername(event) {
+    props.setUsername(event.target.value)
   }
 
-  
-// initialize confirm password
-const [confirm_password, setConfirm_Password]=useState("");
 
-  function handleconfirmPassword(event){
-  setConfirm_Password(event.target.value)
-}
-  
+  // initialize confirm password
+  const [loginEmail, setLoginEmail] = useState("")
+
+  function handleLoginEmail(event) {
+    setLoginEmail(event.target.value);
+  }
+
+  const [loginPassword, setLoginPassword] = useState("")
+
+  function handleLoginPassword(event) {
+    setLoginPassword(event.target.value)
+  }
 
 
+  function login(event) {
+    event.preventDefault();
+    // Check If User Data Exists In LocalStorge
 
+    const user = localStorage.getItem(`${loginEmail}`);
+    if (!user) {
+      alert('User Does Not Exists');
+    }
 
+    // Check is Entered Password Entered matches data in localstorage
 
-    function login(event) {
-      event.preventDefault();
-      // Check If User Data Exists In LocalStorge
-      const user = localStorage.getItem(props.email);
-      if (!user) {
-        return alert('User Does Not Exists');
-      }
-      // Check is Entered Password Entered matches data in localstorage
+    else {
       const userData = JSON.parse(user);
-      if (userData.password !== props.password) {
-        return alert('Invalid Password');
+      if (userData) {
+        if (userData.password !== loginPassword) {
+          alert('Invalid Password');
+          props.setLoggedIn(false);
+        }
+        // Set Logged In To T
+        props.setLoggedIn(true);
       }
-      // Set Logged In To T
-  
-      props.setLoggedIn(true);  }
-  
-   
+    }
 
-    
-   /// end of cod 
-   
-    function signup(event) {
-      event.preventDefault();
-     // Check if Password matches Confirm Password
-      if (props.password !== confirm_password) {
-        return alert('password mismatch');
-      }
-      // Check If User Data Exists In LocalStorge
-      const user = localStorage.getItem(props.email);
-      console.log(user);
-      if (user) {
-        return alert('User Already Exists');
-      }
-      // Save User To LocalStorage
-      const userData = {
-        email: props.email,
-        password: props.password,
-        userSearch:[]
-      };
-      localStorage.setItem(props.email, JSON.stringify(userData));
-      // Set Logged In To false since this is signup
-      props.setLoggedIn(false);
-     }
+  }
 
 
 
- 	return (
+
+  const [toggleLogin, setToggleLogin] = useState(false)
+
+  function Switchlogin() {
+
+    // already under a tenary to check not loggedin 
+    if (toggleLogin) {
+      setToggleLogin(false)
+    }
+    else {
+      setToggleLogin(true)
+    }
+
+
+    // props.setHistoryFocus(true)
+
+  }
+
+
+
+  /// end of cod 
+
+  const [signupEmail, setSignupEmail] = useState("")
+
+  function handleSignupEmail(event) {
+    setSignupEmail(event.target.value);
+  }
+
+  const [signupPassword, setSignupPassword] = useState("")
+
+  function handleSignupPassword(event) {
+    setSignupPassword(event.target.value)
+  }
+
+  const [signupConfirmPassword, setSignupConfirmPassword] = useState("")
+
+  function handleSignupConfirmPassword(event) {
+    setSignupConfirmPassword(event.target.value)
+  }
+
+  function signup(event) {
+    event.preventDefault();
+    // Check if Password matches Confirm Password
+    if (signupPassword !== signupConfirmPassword) {
+      return alert('password mismatch');
+    }
+    // Check If User Data Exists In LocalStorge
+    const user = localStorage.getItem(signupEmail);
+    if (user) {
+      alert('User Already Exists');
+    }
+    // Save User To LocalStorage
+    const userData = {
+      email: signupEmail,
+      password: signupPassword,
+      userSearch: []
+    };
+    localStorage.setItem(signupEmail, JSON.stringify(userData));
+    // Set Logged In To false since this is signup
+    alert('Proceed to login')
+    props.setLoggedIn(false);
+  }
+
+
+
+
+
+
+  return (
     <div>
- 
-            
-                 
-   			
-        {props.loggedin === true ? props.historyfocus ?
 
-          <div className="rightcolumn ">
+
+
+
+      {props.loggedIn === true ? props.historyfocus ?
+
+        <div className="rightcolumn ">
+
+
+
+
           {props.historyfocusdet}
 
-          </div>
-          : <p style={{ color: "white" }}>" Hello Welcome {props.email}"</p>
+        </div>
+        :
 
-           :
+        console.log("logged in")
+        // <p style={{ color: "white", margin: "3rem 6rem 0 0", fontSize: "30px" }}> Hello Welcome {props.email}</p>
+
+
+
+        :
+
+
 
         <div className="rightcolumn bg-transparent ">
 
-              <form onSubmit={login}>
-              <p> please login below </p>
-              <br />
-              <br />
-              <label>Email </label>
-              <input type="text" value={props.email} onChange={handleEmail} />
-              <br />
-              <br />
-              <label>Password </label>
-              <input type="text" value={props.password} onChange={handlePassword} />
-              <br />
-              <button  type="submit">Login</button>
-                </form>
-              <br />
-              <br />
-             
-              <br /> 
+          <div className="button-tog">
+            <button className="rounded" onClick={() => Switchlogin()}>Toggle for  Login/Signup</button>
+          </div>
 
-              <form onSubmit={signup}>
-              <p> please signup below </p>
-              <label>Email </label>
-              <input type="text" value={props.email} onChange={handleEmail} />
-              <br />
-              <br />
-              <label>Password </label>
-              <input type="text" value={props.password} onChange={handlePassword} />
-              <br />
-              <br />
-              <label>confirm Password </label>
-              <input type="text" value={confirm_password} onChange={handleconfirmPassword} />
+          {/* button will load login or signup component  */}
 
-              <button  type="submit">Login</button>
-                </form>
+          {/* login component  */}
 
-              
-              </div> 
+          {/* <Logindisp /> */}
+
+          {/* signup component  */}
+
+          {/* <Signupdisp  /> */}
 
 
 
-            }
-       
-        
-   			
- 		</div>
 
- 	);
 
- }
+          {toggleLogin ?
+            <Signupdisp
+              signup={signup}
+              handleSignupEmail={handleSignupEmail}
+              handleSignupPassword={handleSignupPassword}
+              handleSignupConfirmPassword={handleSignupConfirmPassword}
+              signupEmail={signupEmail}
+              signupPassword={signupPassword}
+              signupConfirmPassword={signupConfirmPassword} />
+            :
+            <Logindisp
+              login={login}
+              handleLoginEmail={handleLoginEmail}
+              handleLoginPassword={handleLoginPassword}
+              loginEmail={loginEmail}
+              loginPassword={loginPassword} />
+          }
 
- 
+          <br />
+
+        </div>
+
+
+
+      }
+
+
+
+    </div>
+
+
+  );
+
+}
+
