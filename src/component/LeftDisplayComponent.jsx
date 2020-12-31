@@ -108,8 +108,8 @@ function LeftDisplayComponent(props) {
 
    function logout() {
 
-      if (props.loggedIn = true) {
-         props.setLoggedIn = false;
+      if (props.loggedIn === true) {
+         props.setLoggedIn(false);
          // localStorage.clear();
 
       }

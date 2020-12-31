@@ -295,7 +295,8 @@ export default function App() {
           <LeftDisplayComponent searchHistory={searchHistory}
             defaultweather={defaultweather} setHistoryFocus={setHistoryFocus}
             historyfocus={historyfocus} historyfocusdet={historyfocusdet}
-            setHistoryFocusDet={setHistoryFocusDet} loggedIn={loggedIn} />
+            setHistoryFocusDet={setHistoryFocusDet} loggedIn={loggedIn}    
+            setLoggedIn={setLoggedIn}/>
 
           { /*if else will be here  to load component  logged in after logged in  */}
 
